@@ -231,7 +231,7 @@ public class Main
       try
       {
         PrintWriter writer = new PrintWriter("plugins\\BawService\\log.log", "UTF-8");
-        writer.println(stringBuffer.toString() + "[" + frmtdDate + "] " + "BawService 원격 콘솔 명령어 실행: " + fla);
+        writer.println(stringBuffer.toString() + "[" + frmtdDate + "] " + "Baw Service에서 원격으로 명령어 실행 요청을 전달받았습니다: " + fla);
         writer.close();
       }
       catch (FileNotFoundException localFileNotFoundException) {}catch (UnsupportedEncodingException localUnsupportedEncodingException) {}
