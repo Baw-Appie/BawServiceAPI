@@ -115,7 +115,7 @@ public class Main
     if ((command.getName().equalsIgnoreCase("bawservice")) && (sender.isOp())) {
       if (args.length == 0)
       {
-        player.sendMessage(m("/bawservice reload: 콘피그 리로드"));
+        player.sendMessage(m("/bawservice reload: 콘피그 리로드 (포트는 리로드되지 않습니다)"));
       }
       else if ((args[0].equalsIgnoreCase("reload")) && (sender.isOp()))
       {
