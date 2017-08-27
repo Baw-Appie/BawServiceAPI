@@ -1,5 +1,6 @@
 name: BawService
 main: com.rpgfarm.BawService.Main
 version: 0.11-Alpha
+author: Baw_Appie
 commands:
  BawService:
