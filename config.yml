@@ -1,0 +1,5 @@
+lastcommand: BawServiceCommand
+setting:
+    id: BawServiceID
+    api-key: BawServiceAPI_KEY
+    port: 3203
