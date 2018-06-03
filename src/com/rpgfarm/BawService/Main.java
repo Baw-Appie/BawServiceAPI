@@ -46,24 +46,25 @@ public class Main
 	this.ip = getOpenStreamHTML("https://baws.kr/api/serveripcheck.php");
     this.ver = getOpenStreamHTML("https://baws.kr/api/versionchecker.php");
 
-    System.out.println("[Baw Service] Baw Service API IP " + this.ip);
+    System.out.println("[Baw Service] 보안을 위하여 다음 아이피의 요청만 받습니다: " + this.ip);
     if (!this.ver.equals(this.getDescription().getVersion()))
     {
-      System.out.println("[Baw Service] Baw Service API 업데이트 버전 발견! 업데이트전 반드시 서버를 백업하고 업데이트하세요.");
-      System.out.println("[Baw Service] 새로운 업데이트는 https://baws.kr/ 에서 진행할 수 있습니다.");
-      System.out.println("[Baw Service] 현재 버전: " + this.getDescription().getVersion());
-      System.out.println("[Baw Service] 새로운 버전: " + this.ver);
+      System.out.println("[Baw Service Updater] Baw Service API 업데이트 버전 발견! 업데이트전 반드시 서버를 백업하고 업데이트하세요.");
+      System.out.println("[Baw Service Updater] Baw Service API는 되도록 최신 버전을 유지할 수 있도록 해주세요.");
+      System.out.println("[Baw Service Updater] 현재 버전: " + this.getDescription().getVersion());
+      System.out.println("[Baw Service Updater] 새로운 버전: " + this.ver);
     }
+    System.out.println("[Baw Service] Baw Service API 플러그인 콘피그 초기화중");
     config = getConfig();
     config.addDefault("lastcommand", "BawServiceCommand");
-    config.options().copyDefaults(true);
-    saveConfig();
-    saveDefaultConfig();
     config.addDefault("setting.id", "BawServiceID");
     config.addDefault("setting.api-key", "BawServiceAPI_KEY");
     config.addDefault("setting.port", Integer.valueOf(3203));
+    config.options().copyDefaults(true);
     saveConfig();
-    Bukkit.getConsoleSender().sendMessage(ChatColor.AQUA + "[" + ChatColor.GREEN + "Baw Service" + ChatColor.AQUA + "] Baw Service API v" + this.getDescription().getVersion() + "가 활성화중입니다. 환영합니다. " + config.getString("setting.id") + "님");
+    saveDefaultConfig();
+    System.out.println("[Baw Service] Baw Service API v" + this.getDescription().getVersion() + "가 활성화중입니다. 환영합니다. " + config.getString("setting.id") + "님");
+    System.out.println("[Baw Service] 현재 활성화중인 Baw Service API는 Socket 사용 버전입니다.");
     final Main mg = this;
     this.serverThread = new Thread(new Runnable()
     {
@@ -84,7 +85,7 @@ public class Main
             else
             {
               System.out.println("[Baw Service] " + client.getInetAddress().getHostName() +" 에서 잘못된 Baw Service API 명령어 패킷이 전송되었습니다.");
-              System.out.println("[Baw Service] 서버의 취약점을 이용한 공격으로 추정됩니다. 이는 차단되었습니다.");
+              System.out.println("[Baw Service] 잘못된 IP의 Socket 연결 시도이므로 무시합니다.");
               System.out.println(ip);
               client.close();
             }
@@ -161,7 +162,7 @@ public class Main
         {
           client.close();
           System.out.println("[Baw Service] " + client.getInetAddress().getHostName() +" 에서 잘못된 Baw Service API 명령어 패킷이 전송되었습니다.");
-          System.out.println("[Baw Service] 서버의 취약점을 이용한 공격으로 추정됩니다. 이는 차단되었습니다.");
+          System.out.println("[Baw Service] 잘못된 IP의 Socket 연결 시도이므로 무시합니다.");
           System.out.println(ip);
         }
       }
@@ -171,6 +172,10 @@ public class Main
       System.out.println("[Baw Service] 인터넷 오류입니다.");
     }
   }
+  
+  
+  
+  
   
   public String getOpenStreamHTML(String urlToRead)
   {
@@ -231,7 +236,7 @@ public class Main
       try
       {
         PrintWriter writer = new PrintWriter("plugins\\BawService\\log.log", "UTF-8");
-        writer.println(stringBuffer.toString() + "[" + frmtdDate + "] " + "Baw Service에서 원격으로 명령어 실행 요청을 전달받았습니다: " + fla);
+        writer.println(stringBuffer.toString() + "[" + frmtdDate + "] " + "Baw Service API "+this.getDescription().getVersion()+" 원격 명령어 실행: " + fla);
         writer.close();
       }
       catch (FileNotFoundException localFileNotFoundException) {}catch (UnsupportedEncodingException localUnsupportedEncodingException) {}
