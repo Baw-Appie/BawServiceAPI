@@ -43,8 +43,8 @@ public class Main
   
   public void onEnable()
   {
-	this.ip = getOpenStreamHTML("https://baws.kr/api/serveripcheck.php");
-    this.ver = getOpenStreamHTML("https://baws.kr/api/versionchecker.php");
+	this.ip = getOpenStreamHTML("https://baws.kr/API/GetServerIP");
+    this.ver = getOpenStreamHTML("https://baws.kr/API/GetAPIVersion");
 
     System.out.println("[Baw Service] 보안을 위하여 다음 아이피의 요청만 받습니다: " + this.ip);
     if (!this.ver.equals(this.getDescription().getVersion()))
