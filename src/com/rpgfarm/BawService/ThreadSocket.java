@@ -62,13 +62,13 @@ public class ThreadSocket
           }
           else if (Main.config.getString("setting.id").equals(id))
           {
-            System.out.println("[Baw Service] 보안을 위하여 전송받은 데이터를 검증하였으나, 잘못된 Baw Service API KEY 입니다.");
+            System.out.println("[Baw Service] 보안을 위하여 전송받은 데이터를 검증하였으나, 잘못된 Baw Service API KEY 입니다. 요청을 무시합니다.");
             sendPacket(osr, "Error API_KEY");
             this.socket.close();
           }
           else
           {
-            System.out.println("[Baw Service] 보안을 위하여 전송받은 데이터를 검증하였으나, 잘못된 Baw Service ID 입니다.");
+            System.out.println("[Baw Service] 보안을 위하여 전송받은 데이터를 검증하였으나, 잘못된 Baw Service ID 입니다. 요청을 무시합니다.");
             sendPacket(osr, "Error ID");
             this.socket.close();
           }
@@ -81,7 +81,7 @@ public class ThreadSocket
       }
       else
       {
-        System.out.println("[Baw Service] Baw Service로부터 이 버전의 API 플러그인으로 해석할 수 없는 데이터를 수신했습니다. 무시합니다.");
+        System.out.println("[Baw Service] Baw Service로부터 이 버전의 API 플러그인으로 해석할 수 없는 데이터를 수신했습니다. 요청을 무시합니다.");
         sendPacket(osr, "Error Server_Error");
         this.socket.close();
       }
